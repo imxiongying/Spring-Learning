@@ -15,14 +15,18 @@ public class TestBeanPostProcessor implements BeanPostProcessor {
     @Nullable
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("TestBeanPostProcessor postProcessBeforeInitialization, beanName = " + beanName);
-        return null;
+        if (bean.getClass().getSimpleName().equals(TestDao.class.getSimpleName())) {
+            System.out.println("TestBeanPostProcessor postProcessBeforeInitialization, beanName = " + beanName);
+        }
+        return bean;
     }
 
     @Nullable
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("TestBeanPostProcessor postProcessAfterInitialization, beanName = " + beanName);
-        return null;
+        if (bean.getClass().getSimpleName().equals(TestDao.class.getSimpleName())) {
+            System.out.println("TestBeanPostProcessor postProcessAfterInitialization, beanName = " + beanName);
+        }
+        return bean;
     }
 }

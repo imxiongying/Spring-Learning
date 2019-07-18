@@ -2,13 +2,15 @@ package me.xiongying.springlearning.bean;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Repository
-public class TestDao implements BeanNameAware, BeanFactoryAware, InitializingBean, DisposableBean {
+public class TestDao implements BeanNameAware, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean {
 
     public TestDao() {
         System.out.println(TestDao.class.getSimpleName() + " 实例化");
@@ -49,5 +51,10 @@ public class TestDao implements BeanNameAware, BeanFactoryAware, InitializingBea
     @PreDestroy
     public void preDestroy() {
         System.out.println(TestDao.class.getSimpleName() + " preDestroy ");
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        System.out.println(TestDao.class.getSimpleName() + " setApplicationContext ");
     }
 }

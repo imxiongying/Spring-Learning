@@ -18,20 +18,26 @@ public class TestInstantiationAwareBeanPostProcessor implements InstantiationAwa
     @Nullable
     @Override
     public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
-        System.out.println("postProcessBeforeInstantiation,beanName=" + beanName);
+        if (beanClass.getSimpleName().equals(TestDao.class.getSimpleName())) {
+            System.out.println("TestInstantiationAwareBeanPostProcessor postProcessBeforeInstantiation,beanName=" + beanName);
+        }
         return null;
     }
 
     @Override
     public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
-        System.out.println("postProcessAfterInstantiation,beanName=" + beanName);
+        if (bean.getClass().getSimpleName().equals(TestDao.class.getSimpleName())) {
+            System.out.println("TestInstantiationAwareBeanPostProcessor postProcessAfterInstantiation,beanName=" + beanName);
+        }
         return true;
     }
 
     @Nullable
     @Override
     public PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName) throws BeansException {
-        System.out.println("postProcessPropertyValues,beanName=" + beanName);
+        if (bean.getClass().getSimpleName().equals(TestDao.class.getSimpleName())) {
+            System.out.println("TestInstantiationAwareBeanPostProcessor postProcessPropertyValues,beanName=" + beanName);
+        }
         return pvs;
     }
 
