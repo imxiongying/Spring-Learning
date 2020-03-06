@@ -2,7 +2,10 @@ package me.xiongying.springlearning.event;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TestEventPublisherAware implements ApplicationEventPublisherAware {
 
     private ApplicationEventPublisher publisher;
